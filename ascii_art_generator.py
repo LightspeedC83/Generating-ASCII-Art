@@ -1,7 +1,7 @@
 from PIL import Image
 
 #opening the reference image
-reference_name = "mustache_small"
+reference_name = "pheonix_cleaned_small"
 reference_path = f"reference_images/{reference_name}.jpg"
 
 reference_image = Image.open(reference_path)
@@ -20,20 +20,16 @@ raw = """$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. "
 ascii_sorted = [x for x in raw]
 
 output = """"""
-index = 0
-for pixel in reference:
-    # figuring out what line of the image we are on (we are only going to do every other vertical line)
-    line = index % reference_size[0]
-    if line % 2 == 0:
-        if index % reference_size[0] == 0:
-            output += "\n"
-        else:
-            shade = pixel[0]
-            output += ascii_sorted[round(shade/3.643)-1]
-            
-    index += 1
+output = ""
+for y in range(reference_size[1]):
+    if y % 2 == 0:
+        continue
+    for x in range(reference_size[0]):
+        pixel = reference[reference_size[0]*y + x][0]
+        output += ascii_sorted[round(pixel / 3.643) - 1]
+    output += "\n"
 
 # writing the output to a text file
-with open(f"output_{reference_name}.txt","w") as f:
+with open(f"outputs/output_{reference_name}.txt","w") as f:
     f.write(output)
 
