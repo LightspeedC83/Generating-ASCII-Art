@@ -1,7 +1,7 @@
 from PIL import Image
 
 #opening the reference image
-reference_name = "mustache"
+reference_name = "mustache_small"
 reference_path = f"reference_images/{reference_name}.jpg"
 
 reference_image = Image.open(reference_path)
@@ -24,7 +24,7 @@ index = 0
 for pixel in reference:
     # figuring out what line of the image we are on (we are only going to do every other vertical line)
     line = index % reference_size[0]
-    if line % 2==0:
+    if line % 2 == 0:
         if index % reference_size[0] == 0:
             output += "\n"
         else:
