@@ -1,7 +1,7 @@
 from PIL import Image
 
 #opening the reference image
-reference_name = "pheonix_cleaned_small"
+reference_name = "uno_reverse_resized"
 reference_path = f"reference_images/{reference_name}.jpg"
 
 reference_image = Image.open(reference_path)
